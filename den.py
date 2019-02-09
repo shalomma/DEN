@@ -27,18 +27,26 @@ class AuxConv(nn.Module):
 
 
 class DEN(nn.Module):
-    def __init__(self):
+    def __init__(self, wts_file):
         super(DEN, self).__init__()
 
-        pre_resnet = resnet152(pretrained=True)
-
+        resnet = resnet152(pretrained=False)
+        resnet = self._init_resnet(resnet, wts_file)
+        
         # prepare the network
-        self._flat_resnet152(pre_resnet)
+        self._flat_resnet152(resnet)
 
         aux_1024 = [AuxConv(in_channels=1024, c_tag=8) for _ in range(16)]
         aux_2048 = [AuxConv(in_channels=2048, c_tag=64) for _ in range(3)]
         self.aux_modules = aux_1024 + aux_2048
     
+    def _init_resnet(self, resnet, wts_file):
+        resnet.fc = nn.Linear(2048, 25 * 32)
+        resnet.load_state_dict(torch.load(wts_file))
+
+        return resnet
+
+
     def _flat_resnet152(self, model):
         
         # break the resent to its building blocks
@@ -55,8 +63,7 @@ class DEN(nn.Module):
         self.resnet_top = nn.Sequential(*flattened[:35])
         self.intermediate_blocks = nn.ModuleList(flattened[35:54])
         self.avg_pool2d = flattened[54]
-        self.fc = flattened[55] # should be discarded
-        self.fc_concat = nn.Linear(25280, 800)
+        self.fc = nn.Linear(25280, 25 * 32)
     
      
     def forward(self, input):
@@ -73,6 +80,6 @@ class DEN(nn.Module):
         outputs.append(x)
         outputs_concat = torch.cat(outputs, dim=1)
 
-        out = self.fc_concat(outputs_concat)
+        out = self.fc(outputs_concat)
 
         return out
