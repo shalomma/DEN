@@ -27,11 +27,16 @@ class AuxConv(nn.Module):
 
 
 class DEN(nn.Module):
-    def __init__(self, wts_file):
+    def __init__(self, wts_file, as_feature_extractor=True):
         super(DEN, self).__init__()
 
         resnet = resnet152(pretrained=False)
         resnet = self._init_resnet(resnet, wts_file)
+        
+        if as_feature_extractor:
+            for param in resnet.parameters():
+                param.requires_grad = False
+            
         
         # prepare the network
         self._flat_resnet152(resnet)
@@ -79,7 +84,7 @@ class DEN(nn.Module):
         x = x.view(x.shape[0], -1)
         outputs.append(x)
         outputs_concat = torch.cat(outputs, dim=1)
-
+        self.debug = outputs
         out = self.fc(outputs_concat)
 
         return out

@@ -10,11 +10,12 @@ import matplotlib.pyplot as plt
 
 from dataset import NyuV2
 from modeling import train_model
+from dbe import DBELoss
 
 # logger
 import logging
 from train_logger import TrainHandler
-logging.basicConfig(filename='./logs/training_resnet_rev2.log', level=logging.INFO)
+logging.basicConfig(filename='./logs/training_resnet_rev3_dbe.log', level=logging.INFO)
 logger = logging.getLogger('root')
 logger.addHandler(TrainHandler())
 
@@ -35,7 +36,7 @@ print('Device: ', device)
 dataloaders = {
     'train': data.DataLoader(NyuV2(os.path.join(data_path, 'train')),
                                batch_size=batch_size, shuffle=True),
-    'val': data.DataLoader(NyuV2(os.path.join(data_path, 'test')),
+    'val': data.DataLoader(NyuV2(os.path.join(data_path, 'val')),
                               batch_size=batch_size, shuffle=True)
 }
 
@@ -44,7 +45,7 @@ model.fc = nn.Linear(2048, depth_size[0] * depth_size[1])
 model = model.to(device)
 
 optimizer = optim.Adam(model.parameters(), lr=1e-4)
-criterion = nn.MSELoss(reduction='sum')
+criterion = DBELoss()
 
 
 train_model(model, dataloaders, criterion, optimizer, n_epochs, device)

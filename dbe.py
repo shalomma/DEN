@@ -13,6 +13,6 @@ class DBELoss(Module):
         
         g_d_hat = self.g(d_hat, a1, a2)    
         g_d = self.g(d, a1, a2)
-        dbe = 0.5 * F.mse_loss(g_d_hat, g_d, reduction='mean')
+        dbe = 0.5 * F.mse_loss(g_d_hat, g_d, reduction='sum')
         
         return dbe

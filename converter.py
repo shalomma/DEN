@@ -6,13 +6,13 @@ import pickle
 
 
 # data path
-data_path = './data/'
+data_path = './data/nyu_v2/'
 data_file = 'nyu_depth_v2_labeled.mat'
 # read mat file
 f = h5py.File(os.path.join(data_path, data_file))
 
 N = len(f['images'])
-train_size = 1100
+train_size = 1200
 images_conv = []
 depths_conv = []
 for n in range(N):
@@ -23,7 +23,7 @@ for n in range(N):
         group = 'train'
         index = n
     else:
-        group = 'test'
+        group = 'val'
         index = n - train_size
     
     img = f['images'][n]

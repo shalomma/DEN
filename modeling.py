@@ -23,8 +23,8 @@ logger = logging.getLogger('root')
 models_dir = './models/'
 best_model_file = 'best_resnet_model.pt'
 model_file = '_resnet_model.pt'
-train_loss_pkl = './models/train_loss.pkl'
-val_loss_pkl = './models/val_loss.pkl'
+train_loss_pkl = './models/train_loss_dbe.pkl'
+val_loss_pkl = './models/val_loss_dbe.pkl'
 
 def train_model(model, dataloaders, criterion, optimizer, num_epochs, device):
     since = time.time()

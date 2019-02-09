@@ -1,0 +1,22 @@
+INFO:root:Epoch 1/399
+INFO:root:----------
+INFO:root:Training:   Loss: 19.7222 RMSE: 4.4410
+INFO:root:Validation: Loss: 11.5052 RMSE: 3.3919
+INFO:root:Epoch complete in 1m 39s
+INFO:root:Epoch 2/399
+INFO:root:----------
+INFO:root:Training:   Loss: 7.7932 RMSE: 2.7916
+INFO:root:Validation: Loss: 11.2186 RMSE: 3.3494
+INFO:root:Epoch complete in 1m 39s
+INFO:root:Epoch 3/399
+INFO:root:----------
+INFO:root:Training:   Loss: 6.4199 RMSE: 2.5338
+INFO:root:Validation: Loss: 10.9754 RMSE: 3.3129
+INFO:root:Epoch complete in 1m 39s
+INFO:root:Epoch 4/399
+INFO:root:----------
+INFO:root:Training:   Loss: 5.1528 RMSE: 2.2700
+INFO:root:Validation: Loss: 9.7813 RMSE: 3.1275
+INFO:root:Epoch complete in 1m 39s
+INFO:root:Epoch 5/399
+INFO:root:----------
