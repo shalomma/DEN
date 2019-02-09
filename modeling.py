@@ -10,43 +10,36 @@ import matplotlib.pyplot as plt
 import time
 import os
 import copy
+import logging
+import pickle
 print("PyTorch Version: ",torch.__version__)
 print("Torchvision Version: ",torchvision.__version__)
 
 
-# Top level data directory. Here we assume the format of the directory conforms 
-#   to the ImageFolder structure
-data_dir = "./data/hymenoptera_data"
 
-# Batch size for training (change depending on how much memory you have)
-batch_size = 16
+logger = logging.getLogger('root')
 
-# Number of epochs to train for 
-num_epochs = 1
+# dirs and files
+models_dir = './models/'
+best_model_file = 'best_resnet_model.pt'
+model_file = '_resnet_model.pt'
+train_loss_pkl = './models/train_loss.pkl'
+val_loss_pkl = './models/val_loss.pkl'
 
-# Flag for feature extracting. When False, we finetune the whole model, 
-#   when True we only update the reshaped layer params
-feature_extract = True
-
-
-def set_parameter_requires_grad(model, feature_extracting):
-    if feature_extracting:
-        for param in model.parameters():
-            param.requires_grad = False
-
-
-def train_model(model, dataloaders, criterion, optimizer, num_epochs=25):
+def train_model(model, dataloaders, criterion, optimizer, num_epochs, device):
     since = time.time()
 
-    val_acc_history = []
-
+    val_loss_history = []
+    train_loss_history = []
+    
     best_model_wts = copy.deepcopy(model.state_dict())
-    best_acc = 0.0
+    best_loss = 1000.0
 
-    for epoch in range(num_epochs):
-        print('Epoch {}/{}'.format(epoch, num_epochs - 1))
-        print('-' * 10)
-
+    for epoch in range(1, num_epochs+1):
+        logger.info('Epoch {}/{}'.format(epoch, num_epochs - 1))
+        logger.info('-' * 10)
+        since_epoch = time.time()
+        
         # Each epoch has a training and validation phase
         for phase in ['train', 'val']:
             if phase == 'train':
@@ -66,23 +59,10 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25):
                 optimizer.zero_grad()
 
                 # forward
-                # track history if only in train
                 with torch.set_grad_enabled(phase == 'train'):
                     # Get model outputs and calculate loss
-                    # Special case for inception because in training it has an auxiliary output. In train
-                    #   mode we calculate the loss by summing the final output and the auxiliary output
-                    #   but in testing we only consider the final output.
-                    if is_inception and phase == 'train':
-                        # From https://discuss.pytorch.org/t/how-to-optimize-inception-model-with-auxiliary-classifiers/7958
-                        outputs, aux_outputs = model(inputs)
-                        loss1 = criterion(outputs, labels)
-                        loss2 = criterion(aux_outputs, labels)
-                        loss = loss1 + 0.4*loss2
-                    else:
-                        outputs = model(inputs)
-                        loss = criterion(outputs, labels)
-
-                    _, preds = torch.max(outputs, 1)
+                    outputs = model(inputs)
+                    loss = criterion(outputs, labels)
 
                     # backward + optimize only if in training phase
                     if phase == 'train':
@@ -90,27 +70,36 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25):
                         optimizer.step()
 
                 # statistics
-                running_loss += loss.item() * inputs.size(0)
-                running_corrects += torch.sum(preds == labels.data)
+                running_loss += loss.item()
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
-            epoch_acc = running_corrects.double() / len(dataloaders[phase].dataset)
 
-            print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
-
+            
+            to_print = 'Loss: {:.4f} RMSE: {:.4f}'.format(epoch_loss, epoch_loss**0.5) 
             # deep copy the model
-            if phase == 'val' and epoch_acc > best_acc:
-                best_acc = epoch_acc
+            if phase == 'val' and epoch_loss < best_loss:
+                best_loss = epoch_loss
                 best_model_wts = copy.deepcopy(model.state_dict())
+                torch.save(best_model_wts, os.path.join(models_dir, '{:03}{}'.format(epoch, model_file)))
             if phase == 'val':
-                val_acc_history.append(epoch_acc)
-
-        print()
-
+                logger.info('Validation: ' + to_print)
+                val_loss_history.append(epoch_loss)
+            elif phase == 'train':
+                logger.info('Training:   ' + to_print)
+                train_loss_history.append(epoch_loss)
+                
+        time_elapsed = time.time() - since_epoch
+        logger.info('Epoch complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
+    
+        # save losses
+        if epoch % 20 == 0:
+            pickle.dump(train_loss_history, open(train_loss_pkl, 'wb'))
+            pickle.dump(val_loss_history, open(val_loss_pkl, 'wb'))
+    
+    # end of training
     time_elapsed = time.time() - since
-    print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
-    print('Best val Acc: {:4f}'.format(best_acc))
+    logger.info('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
+    logger.info('Best val loss: {:4f}'.format(best_loss))
 
     # load best model weights
-    model.load_state_dict(best_model_wts)
-    return model, val_acc_history
+    torch.save(best_model_wts, os.path.join(models_dir, best_model_file))
