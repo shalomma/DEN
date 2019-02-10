@@ -20,7 +20,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'ft_resnet'
+exp_name = 'early_try'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -41,9 +41,13 @@ logger.addHandler(TrainHandler())
 data_path = './data/nyu_v2/'
 
 # params
-batch_size = 16
 depth_size = (25, 32)
+
+# hyperparams
+early_stopping_th = 3
 n_epochs = 240
+batch_size = 16
+
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('Device: ', device)
@@ -81,4 +85,4 @@ optimizer = optim.Adam(params_to_update, lr=1e-4)
 criterion = nn.MSELoss(reduction='sum')
 
 
-train_model(model, dataloaders, criterion, optimizer, n_epochs, device, exp_dir)
+train_model(model, dataloaders, criterion, optimizer, n_epochs, device, exp_dir, early_stopping_th)

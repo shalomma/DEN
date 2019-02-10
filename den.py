@@ -18,6 +18,7 @@ class AuxConv(nn.Module):
     def __init__(self, in_channels, c_tag, stride=1):
         super(AuxConv, self).__init__()
         self.aux = nn.Sequential(nn.Conv2d(in_channels, c_tag, kernel_size=(3, 1)),
+                                 nn.ReLU(),
                                  nn.Conv2d(c_tag, c_tag, kernel_size=(1, 3)),
                                  nn.ReLU(),
                                  Flatten())
