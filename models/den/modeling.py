@@ -106,4 +106,4 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs, device, sa
     logger.info('Training complete in {:.0f}h {:.0f}m {:.0f}s'.format(time_elapsed // 3600,
                                                                       (time_elapsed // 60) % 60,
                                                                       time_elapsed % 60))
-    logger.info('Best Val Loss: {:.4f} RMSE: {:.4f}'.format(best_loss, best_loss**0.5))
+    logger.info('Best val loss: {:4f}'.format(best_loss))

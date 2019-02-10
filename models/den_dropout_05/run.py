@@ -21,7 +21,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'den_dbe'
+exp_name = 'den_dropout_05'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -45,7 +45,7 @@ data_path = './data/nyu_v2/'
 depth_size = (25, 32)
 
 # hyperparams
-early_stopping_th = 10
+early_stopping_th = 40
 n_epochs = 200
 batch_size = 16
 wts_file = './models/full_resnet/149_resnet_model.pt'
@@ -62,12 +62,12 @@ dataloaders = {
 }
 
 
-model = DEN(wts_file, p=0)
+model = DEN(wts_file)
 params_to_update = utils.params_to_update(model)
 model = model.to(device)
 
 optimizer = optim.Adam(params_to_update, lr=1e-4)
-criterion = DBELoss()
-# criterion = nn.MSELoss(reduction='sum')
+# criterion = DBELoss()
+criterion = nn.MSELoss(reduction='sum')
 
 train_model(model, dataloaders, criterion, optimizer, n_epochs, device, exp_dir, early_stopping_th)

@@ -62,7 +62,7 @@ dataloaders = {
 }
 
 
-model = DEN(wts_file, p=0)
+model = DEN(wts_file)
 params_to_update = utils.params_to_update(model)
 model = model.to(device)
 
