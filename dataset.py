@@ -3,13 +3,6 @@ import numpy as np
 import pickle
 import torch
 from torch.utils import data
-from skimage import transform
-
-
-max_depth_val = 10
-img_size = (224, 224)
-depth_size = (25, 32)
-max_img_val = 255.0
 
 
 class NyuV2(data.Dataset):

@@ -117,7 +117,8 @@ class ToTensor(object):
         image = image.transpose((2, 0, 1))
         
         # rescale and flatten the depth map
-        depth = transform.resize(depth, (25, 32), mode='reflect', anti_aliasing=True)
+        depth_size = (25, 32)
+        depth = transform.resize(depth, depth_size, mode='reflect', anti_aliasing=True)
         depth = np.ravel(depth)
         
         return {'image': from_numpy(image),
