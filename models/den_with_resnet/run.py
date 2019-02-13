@@ -21,7 +21,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'den_with_resnet_dropout_05'
+exp_name = 'den_with_resnet'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -45,10 +45,10 @@ data_path = './data/nyu_v2/'
 depth_size = (25, 32)
 
 # hyperparams
-early_stopping_th = 50
-n_epochs = 250
+early_stopping_th = 10
+n_epochs = 200
 batch_size = 16
-wts_file = './models/full_resnet/039_resnet_model.pt'
+wts_file = './models/full_resnet/149_resnet_model.pt'
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -62,7 +62,7 @@ dataloaders = {
 }
 
 
-model = DEN(wts_file, as_feature_extractor=False, p=0.5)
+model = DEN(wts_file, as_feature_extractor=False, p=0)
 params_to_update = utils.params_to_update(model)
 model = model.to(device)
 
