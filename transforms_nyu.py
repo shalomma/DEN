@@ -3,6 +3,25 @@ import numpy as np
 from skimage import transform
 
 
+class Scale(object):
+    """
+    Rescale the image in a sample to a given size.
+
+    """
+
+    def __init__(self):
+        pass
+        
+
+    def __call__(self, sample):
+        
+        img, depth = sample['image'], sample['depth']
+        img = img.astype('float') / 255.0
+        depth = depth.astype('float') / 10.0
+
+        return {'image': img, 'depth': depth}
+
+
 class RandomCrop(object):
     """
     Crop randomly the image in a sample.
@@ -46,39 +65,24 @@ class RandomRescale(object):
     def __init__(self, output_size):
         assert isinstance(output_size, (int, tuple))
         self.output_size = output_size
-        if output_size < 350:
-            print('Rescale output size is too small')
+        if isinstance(self.output_size, int):
+            if output_size < 350:
+                print('Rescale output size is too small')
 
     def __call__(self, sample):
         image, depth = sample['image'], sample['depth']
         
         h, w = image.shape[:2]
-        output_height =  np.random.randint(self.output_size - 100, self.output_size + 100)
-        new_h, new_w = output_height, output_height * w / h
+        if isinstance(self.output_size, int):
+            output_height =  np.random.randint(self.output_size - 100, self.output_size + 100)
+            new_h, new_w = output_height, output_height * w / h
+        else:
+            new_h, new_w = self.output_size
 
         new_h, new_w = int(new_h), int(new_w)
 
         img = transform.resize(image, (new_h, new_w), mode='reflect', anti_aliasing=True)
         depth = transform.resize(depth, (new_h, new_w), mode='reflect', anti_aliasing=True)
-
-        return {'image': img, 'depth': depth}
-
-    
-class Scale(object):
-    """
-    Rescale the image in a sample to a given size.
-
-    """
-
-    def __init__(self):
-        pass
-        
-
-    def __call__(self, sample):
-        
-        img, depth = sample['image'], sample['depth']
-        img = img.astype('float') / 255.0
-        depth = depth.astype('float') / 10.0
 
         return {'image': img, 'depth': depth}
 
@@ -114,6 +118,9 @@ class ToTensor(object):
         # swap color axis because
         # numpy image: H x W x C
         # torch image: C X H X W
+        input_size = 224
+        if image.shape[0] != input_size:
+            image = transform.resize(image, (input_size, input_size), mode='reflect', anti_aliasing=True)
         image = image.transpose((2, 0, 1))
         
         # rescale and flatten the depth map
