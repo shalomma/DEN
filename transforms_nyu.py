@@ -50,8 +50,39 @@ class RandomCrop(object):
                       left: left + new_w]
 
         return {'image': image, 'depth': depth}
-    
-    
+
+
+class CenterCrop(object):
+    """
+    Crop randomly the image in a sample.
+
+    Args:
+        output_size (tuple or int): Desired output size. If int, square crop
+            is made.
+    """
+
+    def __init__(self, output_size):
+        assert isinstance(output_size, tuple)
+        self.output_size = output_size
+
+    def __call__(self, sample):
+        image, depth = sample['image'], sample['depth']
+
+        h, w = image.shape[:2]
+        h_c, w_c = int(h/2), int(w/2)
+
+        new_h, new_w = self.output_size
+        half_new_h, half_new_w = int(new_h/2), int(new_w/2)
+
+        image = image[h_c - half_new_h: h_c + half_new_h,
+                      w_c - half_new_w: w_c + half_new_w]
+
+        depth = depth[h_c - half_new_h: h_c + half_new_h,
+                      w_c - half_new_w: w_c + half_new_w]
+
+        return {'image': image, 'depth': depth}
+
+
 class RandomRescale(object):
     """
     Rescale the image in a sample to a given size.
@@ -74,7 +105,8 @@ class RandomRescale(object):
         
         h, w = image.shape[:2]
         if isinstance(self.output_size, int):
-            output_height =  np.random.randint(self.output_size - 100, self.output_size + 100)
+            N = 50
+            output_height =  np.random.randint(self.output_size - N, self.output_size + N)
             new_h, new_w = output_height, output_height * w / h
         else:
             new_h, new_w = self.output_size

@@ -49,9 +49,9 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs, device, sa
             running_corrects = 0
 
             # Iterate over data.
-            for inputs, labels in dataloaders[phase]:
-                inputs = inputs.to(device)
-                labels = labels.to(device)
+            for data in dataloaders[phase]:
+                inputs = data['image'].to(device).float()
+                labels = data['depth'].to(device).float()
 
                 # zero the parameter gradients
                 optimizer.zero_grad()

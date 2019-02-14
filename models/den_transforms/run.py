@@ -24,7 +24,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'den_transforms_crop_test'
+exp_name = 'den_transforms'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -47,7 +47,6 @@ data_path = './data/nyu_v2/'
 # params
 depth_size = (25, 32)
 input_size = 224
-test_crop = (427, 561)
 
 # hyperparams
 early_stopping_th = 50
@@ -66,7 +65,6 @@ transformers = {
                                transforms_nyu.ToTensor()]),
 
     'val': transforms.Compose([transforms_nyu.Scale(),
-                               transforms_nyu.CenterCrop(test_crop),
                                transforms_nyu.ToTensor()])
 }
 
