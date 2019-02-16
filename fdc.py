@@ -24,11 +24,13 @@ class FDC:
         f_m_hat: (T, M, K)
         f: (T, K)
         """
+        print('Fitting FDC wieghts...')
         T, M, K = f_m_hat.shape
         self.weights = torch.zeros(M, K)
         self.bias = torch.zeros(M, K)
 
         for k in range(K):
+            print(k)
             t_k = f[:, k].unsqueeze_(1)
             b_k = torch.mean(f_m_hat[:, :, k] - t_k, 0, True)
             T_k = f_m_hat[:, :, k] - b_k
@@ -44,6 +46,7 @@ class FDC:
 
 
     def save_weights(self, path_to_dir):
+        print('Saving FDC wieghts...')
         with open(os.path.join(path_to_dir, 'fdc_weights.p') ,'wb') as w:
             pickle.dump(self.weights, w)
         with open(os.path.join(path_to_dir, 'fdc_bias.p') ,'wb') as b:
@@ -58,6 +61,7 @@ class FDC:
 
 
     def forward(self, model, dataloader):
+        print('Forward phase')
         f_m_hat = torch.empty([len(dataloader.dataset), len(crop_ratios), ncoeff])
         f = torch.empty([len(dataloader.dataset), ncoeff])
 
