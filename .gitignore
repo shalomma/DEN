@@ -3,3 +3,4 @@ data/*
 __pycache__/
 *.pt*
 *.pkl
+.idea/*
