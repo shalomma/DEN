@@ -1,6 +1,7 @@
-from torch import from_numpy
+from torch import from_numpy, stack
 import numpy as np
 from skimage import transform
+from torchvision import transforms
 
 
 class Scale(object):
@@ -162,3 +163,42 @@ class ToTensor(object):
         
         return {'image': from_numpy(image),
                 'depth': from_numpy(depth)}
+
+
+class MultiFourCrop(object):
+    """
+
+
+    """
+
+    def __init__(self, crop_ratios):
+        self.crop_ratios = crop_ratios
+
+    def __call__(self, sample):
+        img, depth = sample['image'], sample['depth']
+
+        h, w, _ = img.shape
+        four_crop = []
+        for r in range(len(self.crop_ratios)):
+            ratio = self.crop_ratios[r]
+            h_crop, w_crop = [round(h * ratio), round(w * ratio)]
+            for i in range(4):
+                if i == 0:  # Top-left
+                    crop = img[:h_crop, :w_crop]
+                elif i == 1:  # Top-right
+                    crop = img[:h_crop, -w_crop:]
+                elif i == 2:  # Bottom-left
+                    crop = img[-h_crop:, :w_crop]
+                elif i == 3:  # Bottom-right
+                    crop = img[-h_crop:, -w_crop:]
+
+                crop = transform.resize(crop, (224, 224), preserve_range=True).astype('float32')
+                four_crop.append(crop)
+
+        stacked_images = transforms.Lambda(lambda crops: stack([transforms.ToTensor()(c) for c in crops]))(four_crop)
+
+        depth = transform.resize(depth, (25, 32), preserve_range=True).astype('float32')
+        depth = np.ravel(depth)
+        depth = from_numpy(depth)
+
+        return {'stacked_images': stacked_images, 'depth': depth}
