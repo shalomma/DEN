@@ -59,13 +59,14 @@ print('Device: ', device)
 
 transformers = {
     'train': transforms.Compose([transforms_nyu.Scale(),
-                               transforms_nyu.RandomRescale(480),
-                               transforms_nyu.RandomCrop(input_size),
-                               transforms_nyu.RandomHorizontalFlip(0.5),
-                               transforms_nyu.ToTensor()]),
+                                 transforms_nyu.RandomRescale(0.1),
+                                 transforms_nyu.RandomRotate(10),
+                                 transforms_nyu.RandomCrop(test_crop),
+                                 transforms_nyu.RandomHorizontalFlip(0.5),
+                                 transforms_nyu.ToTensor()]),
 
     'val': transforms.Compose([transforms_nyu.Scale(),
-                               transforms_nyu.CenterCrop((224, 224)),
+                               transforms_nyu.CenterCrop(test_crop),
                                transforms_nyu.ToTensor()])
 }
 

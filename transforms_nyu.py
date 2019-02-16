@@ -25,7 +25,7 @@ class Scale(object):
 
 class RandomCrop(object):
     """
-    Crop randomly the image in a sample.
+    Crop randomly the image and depth map in a sample.
 
     Args:
         output_size (tuple or int): Desired output size. If int, square crop
@@ -33,7 +33,7 @@ class RandomCrop(object):
     """
 
     def __init__(self, output_size):
-        self.output_size = (output_size, output_size)
+        self.output_size = output_size
 
     def __call__(self, sample):
         image, depth = sample['image'], sample['depth']
@@ -49,6 +49,30 @@ class RandomCrop(object):
 
         depth = depth[top: top + new_h,
                       left: left + new_w]
+
+        return {'image': image, 'depth': depth}
+
+    
+class RandomRotate(object):
+    """
+    Rotate randomly the image and depth map in a sample.
+
+    Args:
+        output_size (tuple or int): Desired output size. If int, square crop
+            is made.
+    """
+
+    def __init__(self, max_angle=5):
+        self.max_angle = max_angle
+
+    def __call__(self, sample):
+        image, depth = sample['image'], sample['depth']
+        
+        angle = np.random.uniform(0, self.max_angle)
+        image = transform.rotate(image, angle, resize=False,
+                                 mode='reflect', cval=0, clip=True, preserve_range=False)
+        depth = transform.rotate(depth, angle, resize=False,
+                                 mode='reflect', cval=0, clip=True, preserve_range=False)
 
         return {'image': image, 'depth': depth}
 
@@ -94,23 +118,17 @@ class RandomRescale(object):
             to output_size keeping aspect ratio the same.
     """
 
-    def __init__(self, output_size):
-        assert isinstance(output_size, (int, tuple))
-        self.output_size = output_size
-        if isinstance(self.output_size, int):
-            if output_size < 350:
-                print('Rescale output size is too small')
+    def __init__(self, max_rate=0.1):
+        self.max_rate = max_rate
 
     def __call__(self, sample):
         image, depth = sample['image'], sample['depth']
         
         h, w = image.shape[:2]
-        if isinstance(self.output_size, int):
-            N = 50
-            output_height =  np.random.randint(self.output_size - N, self.output_size + N)
-            new_h, new_w = output_height, output_height * w / h
-        else:
-            new_h, new_w = self.output_size
+        rate = np.random.uniform(0, self.max_rate)
+        output_height = h * (1 + rate)
+        new_h, new_w = output_height, output_height * w / h
+
 
         new_h, new_w = int(new_h), int(new_w)
 
@@ -152,8 +170,7 @@ class ToTensor(object):
         # numpy image: H x W x C
         # torch image: C X H X W
         target_shape = (224, 224)
-        if image.shape != target_shape:
-            image = transform.resize(image, target_shape, mode='reflect', anti_aliasing=True)
+        image = transform.resize(image, target_shape, mode='reflect', anti_aliasing=True)
         image = image.transpose((2, 0, 1))
         
         # rescale and flatten the depth map
@@ -165,10 +182,17 @@ class ToTensor(object):
                 'depth': from_numpy(depth)}
 
 
-class MultiFourCrop(object):
+class FDCPreprocess(object):
     """
-
-
+    Preprocess images and depth for the FDC module
+    images: 
+    1. crop in four corners at a give ratio
+    2. resize to (224, 224)
+    3. cast to torch tensor and stack
+    depths:
+    1. resize to (25, 32)
+    2. flatten
+    3. to torch tensor
     """
 
     def __init__(self, crop_ratios):
@@ -192,12 +216,14 @@ class MultiFourCrop(object):
                 elif i == 3:  # Bottom-right
                     crop = img[-h_crop:, -w_crop:]
 
-                crop = transform.resize(crop, (224, 224), preserve_range=True).astype('float32')
+                crop = transform.resize(crop, (224, 224), mode='reflect',
+                                        anti_aliasing=True, preserve_range=True).astype('float32')
                 four_crop.append(crop)
 
         stacked_images = transforms.Lambda(lambda crops: stack([transforms.ToTensor()(c) for c in crops]))(four_crop)
 
-        depth = transform.resize(depth, (25, 32), preserve_range=True).astype('float32')
+        depth = transform.resize(depth, (25, 32), mode='reflect',
+                                 anti_aliasing=True, preserve_range=True).astype('float32')
         depth = np.ravel(depth)
         depth = from_numpy(depth)
 
