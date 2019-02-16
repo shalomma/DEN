@@ -24,7 +24,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'resnet_crop_test'
+exp_name = 'full_resnet_transforms_crop_test_v2'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -65,7 +65,7 @@ transformers = {
                                transforms_nyu.ToTensor()]),
 
     'val': transforms.Compose([transforms_nyu.Scale(),
-                               transforms_nyu.CenterCrop((224, 224)),
+                               transforms_nyu.CenterCrop(test_crop),
                                transforms_nyu.ToTensor()])
 }
 
@@ -85,12 +85,12 @@ dataloaders = {
 
 
 def params_to_update(model):
-    print("Params to learn:")
+    logger.info("Params to learn:")
     params_to_update = []
     for name,param in model.named_parameters():
         if param.requires_grad == True:
             params_to_update.append(param)
-            print(name)
+            logger.info(name)
             
     return params_to_update
 

@@ -24,7 +24,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'resnet_crop_test'
+exp_name = 'full_resnet_transforms_crop_test'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -52,7 +52,7 @@ test_crop = (427, 561)
 # hyperparams
 early_stopping_th = 50
 n_epochs = 500
-batch_size = 16
+batch_size = 4
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('Device: ', device)
@@ -65,7 +65,7 @@ transformers = {
                                transforms_nyu.ToTensor()]),
 
     'val': transforms.Compose([transforms_nyu.Scale(),
-                               transforms_nyu.CenterCrop((224, 224)),
+                               transforms_nyu.CenterCrop(test_crop),
                                transforms_nyu.ToTensor()])
 }
 
@@ -85,12 +85,12 @@ dataloaders = {
 
 
 def params_to_update(model):
-    print("Params to learn:")
+    logger.info("Params to learn:")
     params_to_update = []
     for name,param in model.named_parameters():
         if param.requires_grad == True:
             params_to_update.append(param)
-            print(name)
+            logger.info(name)
             
     return params_to_update
 
@@ -100,7 +100,7 @@ model.fc = nn.Linear(num_ftrs, depth_size[0] * depth_size[1])
 model = model.to(device)
 
 params_to_update = params_to_update(model)
-optimizer = optim.Adam(params_to_update, lr=1e-4)
+optimizer = optim.Adam(params_to_update, lr=16e-5)
 criterion = nn.MSELoss(reduction='sum')
 
 train_model(model, dataloaders, criterion, optimizer, n_epochs, device, exp_dir, early_stopping_th)

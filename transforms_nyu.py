@@ -150,9 +150,9 @@ class ToTensor(object):
         # swap color axis because
         # numpy image: H x W x C
         # torch image: C X H X W
-        input_size = 224
-        if image.shape[0] != input_size:
-            image = transform.resize(image, (input_size, input_size), mode='reflect', anti_aliasing=True)
+        target_shape = (224, 224)
+        if image.shape != target_shape:
+            image = transform.resize(image, target_shape, mode='reflect', anti_aliasing=True)
         image = image.transpose((2, 0, 1))
         
         # rescale and flatten the depth map
