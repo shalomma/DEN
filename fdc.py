@@ -30,7 +30,6 @@ class FDC:
         self.bias = torch.zeros(M, K)
 
         for k in range(K):
-            print(k)
             t_k = f[:, k].unsqueeze_(1)
             b_k = torch.mean(f_m_hat[:, :, k] - t_k, 0, True)
             T_k = f_m_hat[:, :, k] - b_k
