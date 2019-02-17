@@ -24,7 +24,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'den_crop_427'
+exp_name = 'resnet_crop_427'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -48,7 +48,6 @@ data_path = './data/nyu_v2/'
 depth_size = (25, 32)
 input_size = 224
 test_crop = (427, 561)
-resnet_wts = './models/resnet_crop_427/092_model.pt'
 
 # hyperparams
 early_stopping_th = 50
@@ -96,7 +95,9 @@ def params_to_update(model):
             
     return params_to_update
 
-model = DEN(resnet_wts)
+model = resnet152(pretrained=True)
+num_ftrs = model.fc.in_features
+model.fc = nn.Linear(num_ftrs, depth_size[0] * depth_size[1])
 model = model.to(device)
 
 params_to_update = params_to_update(model)

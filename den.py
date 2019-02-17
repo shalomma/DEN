@@ -47,7 +47,9 @@ class DEN(nn.Module):
         aux_1024 = [AuxConv(in_channels=1024, c_tag=8, p=p) for _ in range(16)]
         aux_2048 = [AuxConv(in_channels=2048, c_tag=64, p=p) for _ in range(3)]
         self.aux_modules = nn.ModuleList(aux_1024 + aux_2048)
-    
+        
+        self._init_added_weights()
+        
     def _init_resnet(self, resnet, wts_file):
         resnet.fc = nn.Linear(2048, 25 * 32)
         resnet.load_state_dict(torch.load(wts_file))
@@ -55,6 +57,14 @@ class DEN(nn.Module):
         return resnet
 
 
+    def _init_added_weights(self):
+        
+        nn.init.xavier_uniform_(self.fc.weight)
+        for name,param in self.aux_modules.named_parameters():
+            if 'weight' in name:
+                nn.init.xavier_uniform_(param)
+    
+    
     def _flat_resnet152(self, model):
         
         # break the resent to its building blocks
@@ -69,7 +79,7 @@ class DEN(nn.Module):
         flattened += list(model.children())[-2:]
 
         self.resnet_top = nn.Sequential(*flattened[:35])
-        self.intermediate_blocks = nn.ModuleList(flattened[35:54])
+        self.resnet_mid = nn.ModuleList(flattened[35:54])
         self.avg_pool2d = flattened[54]
         self.fc = nn.Linear(25280, 25 * 32)
      
@@ -79,7 +89,7 @@ class DEN(nn.Module):
         x = self.resnet_top(input)
         
         outputs = []
-        for i, block in enumerate(self.intermediate_blocks):
+        for i, block in enumerate(self.resnet_mid):
             x = block(x)
             outputs.append(self.aux_modules[i](x))
             
