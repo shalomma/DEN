@@ -40,3 +40,513 @@ INFO:root:Validation: Loss: 5.9780 RMSE: 2.4450
 INFO:root:Epoch complete in 1m 29s
 INFO:root:Epoch 9/500
 INFO:root:----------
+INFO:root:Training:   Loss: 1.2767 RMSE: 1.1299
+INFO:root:Validation: Loss: 6.8296 RMSE: 2.6133
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 10/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.2628 RMSE: 1.1237
+INFO:root:Validation: Loss: 6.4184 RMSE: 2.5335
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 11/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.2255 RMSE: 1.1070
+INFO:root:Validation: Loss: 6.7479 RMSE: 2.5977
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 12/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.2276 RMSE: 1.1080
+INFO:root:Validation: Loss: 6.0322 RMSE: 2.4561
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 13/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.1677 RMSE: 1.0806
+INFO:root:Validation: Loss: 6.3101 RMSE: 2.5120
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 14/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.1813 RMSE: 1.0869
+INFO:root:Validation: Loss: 6.2435 RMSE: 2.4987
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 15/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.1718 RMSE: 1.0825
+INFO:root:Validation: Loss: 5.9994 RMSE: 2.4494
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 16/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.1226 RMSE: 1.0595
+INFO:root:Validation: Loss: 6.3005 RMSE: 2.5101
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 17/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.1052 RMSE: 1.0513
+INFO:root:Validation: Loss: 6.7292 RMSE: 2.5941
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 18/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.1042 RMSE: 1.0508
+INFO:root:Validation: Loss: 6.0695 RMSE: 2.4636
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 19/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0671 RMSE: 1.0330
+INFO:root:Validation: Loss: 6.0941 RMSE: 2.4686
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 20/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0667 RMSE: 1.0328
+INFO:root:Validation: Loss: 6.0240 RMSE: 2.4544
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 21/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0705 RMSE: 1.0346
+INFO:root:Validation: Loss: 6.4988 RMSE: 2.5493
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 22/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0352 RMSE: 1.0174
+INFO:root:Validation: Loss: 6.1971 RMSE: 2.4894
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 23/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0337 RMSE: 1.0167
+INFO:root:Validation: Loss: 6.9969 RMSE: 2.6452
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 24/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0302 RMSE: 1.0150
+INFO:root:Validation: Loss: 6.2839 RMSE: 2.5068
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 25/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0662 RMSE: 1.0326
+INFO:root:Validation: Loss: 6.1709 RMSE: 2.4841
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 26/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0287 RMSE: 1.0142
+INFO:root:Validation: Loss: 6.0034 RMSE: 2.4502
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 27/500
+INFO:root:----------
+INFO:root:Training:   Loss: 1.0146 RMSE: 1.0073
+INFO:root:Validation: Loss: 6.5490 RMSE: 2.5591
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 28/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9847 RMSE: 0.9923
+INFO:root:Validation: Loss: 6.1074 RMSE: 2.4713
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 29/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9771 RMSE: 0.9885
+INFO:root:Validation: Loss: 6.3913 RMSE: 2.5281
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 30/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9639 RMSE: 0.9818
+INFO:root:Validation: Loss: 6.1667 RMSE: 2.4833
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 31/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9751 RMSE: 0.9875
+INFO:root:Validation: Loss: 6.2145 RMSE: 2.4929
+INFO:root:Epoch complete in 1m 30s
+INFO:root:Epoch 32/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9467 RMSE: 0.9730
+INFO:root:Validation: Loss: 6.2265 RMSE: 2.4953
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 33/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9386 RMSE: 0.9688
+INFO:root:Validation: Loss: 5.8344 RMSE: 2.4154
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 34/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9286 RMSE: 0.9636
+INFO:root:Validation: Loss: 6.5940 RMSE: 2.5679
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 35/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8953 RMSE: 0.9462
+INFO:root:Validation: Loss: 6.0239 RMSE: 2.4544
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 36/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9010 RMSE: 0.9492
+INFO:root:Validation: Loss: 5.9052 RMSE: 2.4301
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 37/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8985 RMSE: 0.9479
+INFO:root:Validation: Loss: 5.8977 RMSE: 2.4285
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 38/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.9043 RMSE: 0.9509
+INFO:root:Validation: Loss: 6.0018 RMSE: 2.4499
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 39/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8950 RMSE: 0.9461
+INFO:root:Validation: Loss: 6.1329 RMSE: 2.4765
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 40/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8900 RMSE: 0.9434
+INFO:root:Validation: Loss: 5.9010 RMSE: 2.4292
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 41/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8814 RMSE: 0.9388
+INFO:root:Validation: Loss: 5.9437 RMSE: 2.4380
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 42/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8729 RMSE: 0.9343
+INFO:root:Validation: Loss: 5.9750 RMSE: 2.4444
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 43/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8700 RMSE: 0.9327
+INFO:root:Validation: Loss: 5.9293 RMSE: 2.4350
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 44/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8740 RMSE: 0.9349
+INFO:root:Validation: Loss: 5.6694 RMSE: 2.3810
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 45/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8677 RMSE: 0.9315
+INFO:root:Validation: Loss: 5.9411 RMSE: 2.4374
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 46/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8523 RMSE: 0.9232
+INFO:root:Validation: Loss: 5.8143 RMSE: 2.4113
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 47/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8482 RMSE: 0.9210
+INFO:root:Validation: Loss: 5.9928 RMSE: 2.4480
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 48/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8667 RMSE: 0.9310
+INFO:root:Validation: Loss: 5.7807 RMSE: 2.4043
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 49/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8515 RMSE: 0.9228
+INFO:root:Validation: Loss: 5.9171 RMSE: 2.4325
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 50/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8620 RMSE: 0.9285
+INFO:root:Validation: Loss: 6.2114 RMSE: 2.4923
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 51/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8303 RMSE: 0.9112
+INFO:root:Validation: Loss: 5.9763 RMSE: 2.4446
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 52/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8381 RMSE: 0.9155
+INFO:root:Validation: Loss: 5.9905 RMSE: 2.4475
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 53/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8375 RMSE: 0.9151
+INFO:root:Validation: Loss: 6.3164 RMSE: 2.5132
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 54/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8397 RMSE: 0.9164
+INFO:root:Validation: Loss: 6.0482 RMSE: 2.4593
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 55/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8106 RMSE: 0.9003
+INFO:root:Validation: Loss: 6.2275 RMSE: 2.4955
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 56/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8222 RMSE: 0.9067
+INFO:root:Validation: Loss: 5.8330 RMSE: 2.4152
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 57/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8155 RMSE: 0.9031
+INFO:root:Validation: Loss: 6.2190 RMSE: 2.4938
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 58/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8162 RMSE: 0.9034
+INFO:root:Validation: Loss: 5.7171 RMSE: 2.3910
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 59/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8018 RMSE: 0.8954
+INFO:root:Validation: Loss: 5.8199 RMSE: 2.4124
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 60/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8222 RMSE: 0.9067
+INFO:root:Validation: Loss: 5.5522 RMSE: 2.3563
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 61/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8051 RMSE: 0.8973
+INFO:root:Validation: Loss: 6.0256 RMSE: 2.4547
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 62/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8176 RMSE: 0.9042
+INFO:root:Validation: Loss: 6.0774 RMSE: 2.4652
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 63/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7971 RMSE: 0.8928
+INFO:root:Validation: Loss: 6.0445 RMSE: 2.4586
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 64/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8048 RMSE: 0.8971
+INFO:root:Validation: Loss: 6.0499 RMSE: 2.4596
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 65/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7959 RMSE: 0.8921
+INFO:root:Validation: Loss: 5.9368 RMSE: 2.4366
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 66/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8053 RMSE: 0.8974
+INFO:root:Validation: Loss: 5.8171 RMSE: 2.4119
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 67/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7967 RMSE: 0.8926
+INFO:root:Validation: Loss: 5.9106 RMSE: 2.4312
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 68/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7696 RMSE: 0.8773
+INFO:root:Validation: Loss: 5.8514 RMSE: 2.4190
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 69/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7881 RMSE: 0.8878
+INFO:root:Validation: Loss: 5.6759 RMSE: 2.3824
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 70/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.8196 RMSE: 0.9053
+INFO:root:Validation: Loss: 5.8607 RMSE: 2.4209
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 71/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7535 RMSE: 0.8681
+INFO:root:Validation: Loss: 6.0076 RMSE: 2.4510
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 72/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7737 RMSE: 0.8796
+INFO:root:Validation: Loss: 5.9555 RMSE: 2.4404
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 73/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7762 RMSE: 0.8810
+INFO:root:Validation: Loss: 5.9353 RMSE: 2.4362
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 74/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7832 RMSE: 0.8850
+INFO:root:Validation: Loss: 6.0392 RMSE: 2.4575
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 75/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7474 RMSE: 0.8645
+INFO:root:Validation: Loss: 6.1811 RMSE: 2.4862
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 76/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7451 RMSE: 0.8632
+INFO:root:Validation: Loss: 5.9031 RMSE: 2.4296
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 77/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7507 RMSE: 0.8665
+INFO:root:Validation: Loss: 6.0938 RMSE: 2.4686
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 78/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7430 RMSE: 0.8620
+INFO:root:Validation: Loss: 5.8493 RMSE: 2.4185
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 79/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7350 RMSE: 0.8573
+INFO:root:Validation: Loss: 5.8990 RMSE: 2.4288
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 80/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7449 RMSE: 0.8631
+INFO:root:Validation: Loss: 5.9807 RMSE: 2.4455
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 81/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7409 RMSE: 0.8607
+INFO:root:Validation: Loss: 5.7113 RMSE: 2.3898
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 82/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7507 RMSE: 0.8664
+INFO:root:Validation: Loss: 5.7782 RMSE: 2.4038
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 83/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7526 RMSE: 0.8675
+INFO:root:Validation: Loss: 6.2328 RMSE: 2.4966
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 84/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7559 RMSE: 0.8694
+INFO:root:Validation: Loss: 5.9364 RMSE: 2.4365
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 85/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7512 RMSE: 0.8667
+INFO:root:Validation: Loss: 5.9616 RMSE: 2.4416
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 86/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7499 RMSE: 0.8660
+INFO:root:Validation: Loss: 5.9475 RMSE: 2.4388
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 87/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7332 RMSE: 0.8563
+INFO:root:Validation: Loss: 5.7005 RMSE: 2.3876
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 88/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7392 RMSE: 0.8598
+INFO:root:Validation: Loss: 5.6838 RMSE: 2.3841
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 89/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7299 RMSE: 0.8544
+INFO:root:Validation: Loss: 5.7581 RMSE: 2.3996
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 90/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7447 RMSE: 0.8630
+INFO:root:Validation: Loss: 5.7778 RMSE: 2.4037
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 91/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7504 RMSE: 0.8663
+INFO:root:Validation: Loss: 5.6690 RMSE: 2.3810
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 92/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7436 RMSE: 0.8623
+INFO:root:Validation: Loss: 6.1097 RMSE: 2.4718
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 93/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7228 RMSE: 0.8502
+INFO:root:Validation: Loss: 5.7989 RMSE: 2.4081
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 94/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7163 RMSE: 0.8464
+INFO:root:Validation: Loss: 6.0327 RMSE: 2.4561
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 95/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7382 RMSE: 0.8592
+INFO:root:Validation: Loss: 5.7576 RMSE: 2.3995
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 96/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7326 RMSE: 0.8559
+INFO:root:Validation: Loss: 5.6034 RMSE: 2.3671
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 97/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7194 RMSE: 0.8482
+INFO:root:Validation: Loss: 5.8452 RMSE: 2.4177
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 98/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7185 RMSE: 0.8476
+INFO:root:Validation: Loss: 5.8219 RMSE: 2.4129
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 99/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7183 RMSE: 0.8476
+INFO:root:Validation: Loss: 5.9567 RMSE: 2.4406
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 100/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7129 RMSE: 0.8444
+INFO:root:Validation: Loss: 5.7976 RMSE: 2.4078
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 101/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7691 RMSE: 0.8770
+INFO:root:Validation: Loss: 6.0167 RMSE: 2.4529
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 102/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7176 RMSE: 0.8471
+INFO:root:Validation: Loss: 5.9177 RMSE: 2.4326
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 103/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7018 RMSE: 0.8378
+INFO:root:Validation: Loss: 5.7924 RMSE: 2.4067
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 104/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7221 RMSE: 0.8498
+INFO:root:Validation: Loss: 5.8307 RMSE: 2.4147
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 105/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7183 RMSE: 0.8475
+INFO:root:Validation: Loss: 6.3007 RMSE: 2.5101
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 106/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7078 RMSE: 0.8413
+INFO:root:Validation: Loss: 5.8939 RMSE: 2.4277
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 107/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7061 RMSE: 0.8403
+INFO:root:Validation: Loss: 5.8726 RMSE: 2.4233
+INFO:root:Epoch complete in 1m 30s
+INFO:root:Epoch 108/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7134 RMSE: 0.8446
+INFO:root:Validation: Loss: 5.7771 RMSE: 2.4036
+INFO:root:Epoch complete in 1m 28s
+INFO:root:Epoch 109/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.7034 RMSE: 0.8387
+INFO:root:Validation: Loss: 5.8908 RMSE: 2.4271
+INFO:root:Epoch complete in 1m 29s
+INFO:root:Epoch 110/500
+INFO:root:----------
+INFO:root:Training:   Loss: 0.6852 RMSE: 0.8278
+INFO:root:Validation: Loss: 5.7506 RMSE: 2.3980
+INFO:root:Early stopping...
+INFO:root:Training complete in 2h 42m 9s
+INFO:root:Best Val Loss: 5.5522 RMSE: 2.3563
