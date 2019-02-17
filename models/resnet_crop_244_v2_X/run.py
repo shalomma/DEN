@@ -23,7 +23,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'den_crop_427_p_05'
+exp_name = 'resnet_crop_244'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -44,14 +44,13 @@ logger.addHandler(TrainHandler())
 data_path = './data/nyu_v2/'
 
 # params
-test_crop = (427, 561)
+test_crop = (224, 224)
 depth_size = (25, 32)
 
 # hyperparams
 early_stopping_th = 50
 n_epochs = 500
 batch_size = 8
-resnet_wts = './models/resnet_crop_427_2.329/092_model.pt'
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('Device: ', device)
@@ -80,12 +79,14 @@ nyu = {
 dataloaders = {
     'train': data.DataLoader(nyu['train'], num_workers=8,
                              batch_size=batch_size, shuffle=True),
-
+    
     'val': data.DataLoader(nyu['val'], num_workers=8,
                            batch_size=batch_size, shuffle=True)
 }
 
-model = DEN(resnet_wts, p=0.5)
+model = resnet152(pretrained=True)
+num_ftrs = model.fc.in_features
+model.fc = nn.Linear(num_ftrs, depth_size[0] * depth_size[1])
 model = model.to(device)
 
 params_to_update = utils.params_to_update(model)

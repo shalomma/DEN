@@ -4,15 +4,11 @@ from skimage import transform
 from torchvision import transforms
 
 
-class Scale(object):
+class Normalize(object):
     """
     Rescale the image in a sample to a given size.
 
     """
-
-    def __init__(self):
-        pass
-        
 
     def __call__(self, sample):
         
@@ -35,6 +31,7 @@ class RandomCrop(object):
     def __init__(self, output_size):
         self.output_size = output_size
 
+    
     def __call__(self, sample):
         image, depth = sample['image'], sample['depth']
         
@@ -65,6 +62,7 @@ class RandomRotate(object):
     def __init__(self, max_angle=5):
         self.max_angle = max_angle
 
+
     def __call__(self, sample):
         image, depth = sample['image'], sample['depth']
         
@@ -89,6 +87,7 @@ class CenterCrop(object):
     def __init__(self, output_size):
         assert isinstance(output_size, tuple)
         self.output_size = output_size
+
 
     def __call__(self, sample):
         image, depth = sample['image'], sample['depth']
@@ -169,17 +168,30 @@ class ToTensor(object):
         # swap color axis because
         # numpy image: H x W x C
         # torch image: C X H X W
-        target_shape = (224, 224)
-        image = transform.resize(image, target_shape, mode='reflect', anti_aliasing=True)
         image = image.transpose((2, 0, 1))
         
-        # rescale and flatten the depth map
-        depth_size = (25, 32)
-        depth = transform.resize(depth, depth_size, mode='reflect', anti_aliasing=True)
+        # flatten the depth map
         depth = np.ravel(depth)
         
         return {'image': from_numpy(image),
                 'depth': from_numpy(depth)}
+
+    
+class ScaleDown(object):
+    """Convert ndarrays in sample to Tensors."""
+
+    def __call__(self, sample):
+        image, depth = sample['image'], sample['depth']
+
+
+        target_image_shape = (224, 224)
+        image = transform.resize(image, target_image_shape, mode='reflect', anti_aliasing=True)
+        
+        # rescale and flatten the depth map
+        target_depth_shape = (25, 32)
+        depth = transform.resize(depth, target_depth_shape, mode='reflect', anti_aliasing=True)
+        
+        return {'image': image, 'depth': depth}    
 
 
 class FDCPreprocess(object):

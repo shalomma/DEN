@@ -1,21 +1,11 @@
 from __future__ import print_function
 from __future__ import division
 import torch
-import torch.nn as nn
-import torch.optim as optim
-import numpy as np
-import torchvision
-from torchvision import datasets, models, transforms
-import matplotlib.pyplot as plt
 import time
 import os
 import copy
 import logging
 import pickle
-print("PyTorch Version: ",torch.__version__)
-print("Torchvision Version: ",torchvision.__version__)
-
-
 
 logger = logging.getLogger('root')
 
@@ -23,6 +13,8 @@ logger = logging.getLogger('root')
 model_file = '_model.pt'
 train_loss_pkl = 'train_loss.pkl'
 val_loss_pkl = 'val_loss.pkl'
+
+criterion_test = torch.nn.MSELoss(reduction='sum')
 
 def train_model(model, dataloaders, criterion, optimizer, num_epochs, device, save_dir, early_stopping_th):
         
@@ -60,12 +52,14 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs, device, sa
                 with torch.set_grad_enabled(phase == 'train'):
                     # Get model outputs and calculate loss
                     outputs = model(inputs)
-                    loss = criterion(outputs, labels)
 
                     # backward + optimize only if in training phase
                     if phase == 'train':
+                        loss = criterion(outputs, labels)
                         loss.backward()
                         optimizer.step()
+                    elif phase == 'val':
+                        loss = criterion_test(outputs, labels)
 
                 # statistics
                 running_loss += loss.item()
