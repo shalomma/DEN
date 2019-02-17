@@ -1,16 +1,10 @@
 import os
-import time
-import numpy as np
-import pickle
 import torch
 from torch.utils import data
 from torch import nn, optim
-from torchvision.models import resnet152
 from torchvision import transforms
-import matplotlib.pyplot as plt
 import logging
 from shutil import copy
-import skimage
 
 from train_logger import TrainHandler
 from dataset import NyuV2

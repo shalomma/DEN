@@ -1,9 +1,6 @@
 import torch
 import torch.nn as nn
-from torch.autograd import Variable
-
 from torchvision.models import resnet152
-import torchvision.models
 
 
 class Flatten(nn.Module):
