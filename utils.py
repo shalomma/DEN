@@ -11,3 +11,7 @@ def params_to_update(model):
             print("\t",name)
             
     return params_to_update
+
+
+def count_trainable_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
