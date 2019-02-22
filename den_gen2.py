@@ -43,7 +43,7 @@ class DEN(nn.Module):
         self._init_added_weights()
         
     def _init_resnet(self, resnet, backbone_wts):
-        num_ftrs = model.fc.in_features
+        num_ftrs = resnet.fc.in_features
         resnet.fc = nn.Linear(num_ftrs, 25 * 32)
         resnet.load_state_dict(torch.load(backbone_wts))
 
