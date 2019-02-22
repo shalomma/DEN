@@ -14,9 +14,25 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class FDC:
 
-    def __init__(self):
+    def __init__(self, model):
         self.weights = None
         self.bias = None
+        self.model = model
+        
+        
+    def __call__(self, batch):
+        predictions = []
+        for i in range(batch.shape[0]):
+            with torch.no_grad():
+                result = self.model(batch[i])
+            candidates = self.merge_crops(result)
+            f_m_hat = self.img2fourier(candidates)
+            f_hat = self.predict(f_m_hat)
+            d_hat = self.fourier2img(f_hat.view(1, -1), depth_size)
+            predictions.append(d_hat[0])
+
+        return predictions
+        
 
 
     def fit(self, f_m_hat, f):
@@ -37,6 +53,7 @@ class FDC:
             self.weights[:, k] = w_k.squeeze_()
             self.bias[:, k] = b_k.squeeze_()
 
+    
     def predict(self, f_m_hat):
         """
         f_m_hat: (M, K)
@@ -59,19 +76,19 @@ class FDC:
             self.bias = pickle.load(b)
 
 
-    def forward(self, model, dataloader):
+    def forward(self, dataloader):
         print('Forward phase')
         f_m_hat = torch.empty([len(dataloader.dataset), len(crop_ratios), ncoeff])
         f = torch.empty([len(dataloader.dataset), ncoeff])
 
-        model.eval()
+        self.model.eval()
         with torch.no_grad():
             for t, data in enumerate(dataloader):
                 inputs = data['stacked_images'].to(device).float()
                 labels = data['depth'].to(device).float()
 
                 bsz, ncrops, c, h, w = inputs.size()
-                result = model(inputs.view(-1, c, h, w))
+                result = self.model(inputs.view(-1, c, h, w))
                 candidates = self.merge_crops(result)
                 f_m_hat[t] = self.img2fourier(candidates)
                 f[t] = self.img2fourier(labels.view(1, depth_size[0], depth_size[1]))

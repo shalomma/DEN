@@ -11,7 +11,7 @@ from train_logger import TrainHandler
 from dataset import NyuV2
 from modeling import train_model
 from dbe import DBELoss
-from den import DEN
+from den_gen2 import DEN
 import utils
 import transforms_nyu
 
@@ -23,7 +23,7 @@ seed = 2
 torch.manual_seed(seed)
 
 # Experiment
-exp_name = 'den_crop_427_p_05_dbe'
+exp_name = 'den_gen2'
 exp_dir = os.path.join('./models/', exp_name)
 if os.path.exists(exp_dir):
     print('Enter new experiment name!')
@@ -51,7 +51,6 @@ depth_size = (25, 32)
 early_stopping_th = 50
 n_epochs = 500
 batch_size = 8
-resnet_wts = './models/resnet_crop_427_2.329/092_model.pt'
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('Device: ', device)
@@ -85,11 +84,12 @@ dataloaders = {
                            batch_size=batch_size, shuffle=True)
 }
 
-model = DEN(resnet_wts, p=0.5)
+resnet_wts = './models/resnet_crop_427_2.329/092_model.pt'
+model = DEN(resnet_wts)
 model = model.to(device)
 
 params_to_update = utils.params_to_update(model)
-optimizer = optim.Adam(params_to_update, lr=16e-5)
-criterion = DBELoss()
+optimizer = optim.Adam(model.parameters(), lr=16e-5)
+criterion = nn.MSELoss(reduction='sum')
 
 train_model(model, dataloaders, criterion, optimizer, n_epochs, device, exp_dir, early_stopping_th)

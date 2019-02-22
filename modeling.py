@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import division
 import torch
 import time
 import os
@@ -70,8 +68,8 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs, device, sa
             # deep copy the model
             if phase == 'val' and epoch_loss < best_loss:
                 best_loss = epoch_loss
-                best_model_wts = copy.deepcopy(model.state_dict())
-                torch.save(best_model_wts, os.path.join(save_dir, '{:03}{}'.format(epoch, model_file)))
+#                 best_model_wts = copy.deepcopy(model.state_dict())
+#                 torch.save(best_model_wts, os.path.join(save_dir, '{:03}{}'.format(epoch, model_file)))
                 early_stopping_counter = early_stopping_th
             elif phase == 'val':
                 early_stopping_counter -= 1
@@ -91,9 +89,11 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs, device, sa
         logger.info('Epoch complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
     
         # update saved losses
-        if epoch % 20 == 0:
+        if epoch % 2 == 0:
             pickle.dump(train_loss_history, open(os.path.join(save_dir, train_loss_pkl), 'wb'))
             pickle.dump(val_loss_history, open(os.path.join(save_dir, val_loss_pkl), 'wb'))
+            best_model_wts = copy.deepcopy(model.state_dict())
+            torch.save(best_model_wts, os.path.join(save_dir, '{:03}{}'.format(epoch, model_file)))
     
     # end of training
     time_elapsed = time.time() - since
