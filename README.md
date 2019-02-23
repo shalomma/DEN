@@ -15,7 +15,7 @@ to extract intermediate features. All the extracted intermediate features are co
 
 ### Depth-Balanced Euclidean Loss
 A modification of the commonly used Euclidean loss, which helps to more relaibly estimate shallow depths, as well as deep depths.
-![Alt text](https://github.com/shalomma/DEN/blob/master/.github/ddb.png)
+![Alt text](https://github.com/shalomma/DEN/blob/master/.github/dbe.png)
 
 ### Fourier Domain Combination
 Depth map candidates are generated using the Deep Estimation Network. By cropping each image in different ratios we get a batch of candidates, Transform the candidates to the frequency with the 2D DFT, and finally, Linearly combine the frequency maps to a single one. We then apply the inverse 2D DFT to obtain the final estimated depth map.
@@ -31,6 +31,7 @@ Depth map candidates are generated using the Deep Estimation Network. By croppin
 * TorchVision 0.2.1
 <br />
 You can install all the requirements in a virtual environment as follows
+
 ```sh
 $ python -m pip install --user denenv
 $ pip install -r requirements.txt
@@ -51,7 +52,7 @@ $ run.py
 ```
 
 
-#### Inference
+### Inference
 Implement in your code as follows
 ```
 import torch
