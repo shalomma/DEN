@@ -41,8 +41,9 @@ $ pip install -r requirements.txt
 For a quick implementation, download the slim [NYU V2](http://horatio.cs.nyu.edu/mit/silberman/nyu_depth_v2/nyu_depth_v2_labeled.mat) dataset (.mat file), place it in the data directory and run the converter script to parse the file into RGB images and depth maps.
 
 ```sh
-$ mkdir data
-$ mv nyu_depth_v2_labeled.mat ./data/
+$ mkdir data/nyu_v2/
+$ wget http://horatio.cs.nyu.edu/mit/silberman/nyu_depth_v2/nyu_depth_v2_labeled.mat
+$ mv nyu_depth_v2_labeled.mat ./data/nyu_v2/
 $ python converter.py
 ```
 ### Training
