@@ -1,3 +1,4 @@
+notebooks/*
 models/*
 data/*
 .ipynb_checkpoints

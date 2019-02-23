@@ -88,6 +88,12 @@ class DEN(nn.Module):
                     nn.Conv2d(in_channels, in_channels//2, kernel_size=3, stride=1, padding=1),
                     nn.BatchNorm2d(in_channels//2),
                     nn.ReLU(),
+                    nn.Conv2d(in_channels//2, in_channels//2, kernel_size=3, stride=1, padding=1),
+                    nn.BatchNorm2d(in_channels//2),
+                    nn.ReLU(),
+                    nn.Conv2d(in_channels//2, in_channels//2, kernel_size=3, stride=1, padding=1),
+                    nn.BatchNorm2d(in_channels//2),
+                    nn.ReLU(),
                     nn.Conv2d(in_channels//2, in_channels//4, kernel_size=3, stride=1, padding=1),
                     nn.BatchNorm2d(in_channels//4),
                     nn.ReLU()
