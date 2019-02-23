@@ -33,7 +33,7 @@ else:
     os.mkdir(exp_dir)
     copy('run.py', exp_dir)
     copy('modeling.py', exp_dir)
-    
+
 
 # logger
 logging.basicConfig(filename=os.path.join(exp_dir, 'training.log'), level=logging.INFO)
@@ -84,7 +84,7 @@ dataloaders = {
                            batch_size=batch_size, shuffle=True)
 }
 
-resnet_wts = './models/resnet_crop_427_2.329/092_model.pt'
+resnet_wts = './models/pretrained_resnet/model.pt'
 model = DEN(resnet_wts)
 model = model.to(device)
 
